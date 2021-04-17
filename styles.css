@@ -15,6 +15,33 @@ body {
     background-size: cover;
     color: #fff;
     text-shadow: 2px 2px 3px #000;
+    transition: background-image 1s ease-in-out;
+}
+
+.background-buttons {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.background-buttons button {
+    color: #fff;
+    font-size: 40px;
+    text-shadow: 2px 2px 3px #000;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.5s all;
+}
+
+.background-buttons button:hover {
+    color: #ccc;
+}
+
+#curr-back-button {
+    font-size: 50px;
 }
 
 .time {
