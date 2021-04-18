@@ -6,7 +6,15 @@ const prevBackButton = document.querySelector('#prev-back-button'),
     date = document.querySelector('.date'),
     greeting = document.querySelector('.greeting'),
     name = document.querySelector('.name'),
-    focus = document.querySelector('.focus');
+    focus = document.querySelector('.focus'),
+    quote = document.querySelector('.quote'),
+    quoteBody = document.querySelector('.quote-body'),
+    author = document.querySelector('.author'),
+    weatherIcon = document.querySelector('.weather-icon'),
+    temperature = document.querySelector('.temperature'),
+    humidity = document.querySelector('.humidity'),
+    windSpeed = document.querySelector('.wind-speed'),
+    city = document.querySelector('.city');
 
 // Add Zeros
 function addZero(n) {
@@ -170,6 +178,64 @@ function setFocus(e) {
     }
 }
 
+async function getQuote() {
+    const res = await fetch(`https://type.fit/api/quotes`);
+    const data = await res.json();
+    i = randInt(0, 1643 - 1);
+    quote.textContent = data[i].text;
+    if (data[i].author != null)
+        author.textContent = "- "+data[i].author;
+    else
+        author.textContent = "";
+}
+
+async function getWeather() {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=1c77421b3dcb55d2c0da4104a6ada19f&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json();
+  
+    weatherIcon.className = 'weather-icon owf';
+    if (data.cod == 200) {
+        weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+        temperature.textContent = `${data.main.temp}°C`;
+        humidity.textContent = data.main.humidity+"%";
+        windSpeed.textContent = data.wind.speed+"m/s";
+    } else {
+        temperature.textContent = "Can't load weather";
+        windSpeed.textContent = data.message;
+        humidity.textContent = "";
+    }
+}
+
+// При клике в поле ввода текст, который там был, исчезает
+function selectCity() {
+    city.textContent = '';
+}
+
+// Get city
+function getCity() {
+    if (localStorage.getItem('city') === null) {
+        city.textContent = '(Enter city)';
+    } else {
+        city.textContent = localStorage.getItem('city');
+        getWeather();
+    }
+}
+
+// Set city
+function setCity(e) {
+    if (e.type === 'keypress') {
+        if (e.which == 13 || e.keyCode == 13) {
+            if (e.target.innerText != '')
+                localStorage.setItem('city', e.target.innerText);
+                city.blur();
+        }
+    } else {
+        if (e.target.innerText != '')
+            localStorage.setItem('city', e.target.innerText);
+    }
+}
+
 prevBackButton.addEventListener('click', prevBg);
 currBackButton.addEventListener('click', currBg);
 nextBackButton.addEventListener('click', nextBg);
@@ -180,6 +246,11 @@ name.addEventListener('blur', getName);
 focus.addEventListener('click', selectFocus);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', getFocus);
+city.addEventListener('click', selectCity);
+city.addEventListener('keypress', setCity);
+city.addEventListener('blur', getCity);
+
+quoteBody.addEventListener('click', getQuote);
 
 // Run
 showTime();
@@ -188,3 +259,5 @@ setGreetHourly();
 setInterval(setGreetHourly, 60*60*1000);
 getName();
 getFocus();
+getQuote();
+getCity();

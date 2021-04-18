@@ -56,13 +56,78 @@ h1 {
     margin: 3rem;
 }
 
+.name {
+    cursor: pointer;
+}
+
 h2 {
     margin-bottom: 0.5rem;
     opacity: 0.8;
+}
+
+.focus {
+    cursor: pointer;
 }
 
 @media (max-width: 700px) {
     .time {
         font-size: 6rem;
     }
+}
+
+.quote-wrapper {
+    position: absolute;
+    bottom: 10px;
+    width: 800px;
+    padding: 30px;
+    font-size: 20px;
+}
+
+.quote-body {
+    display: flex;
+    transition: 0.5s all;
+}
+
+.quote {
+    text-align: left;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.quote-body:hover {
+    color: rgba(255, 255, 255, 0.705);
+}
+
+.author {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.weather-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 20px;
+}
+
+.weather-main {
+    display: flex;
+    font-size: 25px;
+}
+
+.weather-add {
+    display: flex;
+}
+
+.weather-icon {
+    font-size: 25px;
+}
+
+.city {
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.8;
 }
