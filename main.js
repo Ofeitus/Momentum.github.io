@@ -14,7 +14,8 @@ const prevBackButton = document.querySelector('#prev-back-button'),
     temperature = document.querySelector('.temperature'),
     humidity = document.querySelector('.humidity'),
     windSpeed = document.querySelector('.wind-speed'),
-    city = document.querySelector('.city');
+    city = document.querySelector('.city'),
+    preload = document.querySelector('.preload');
 
 // Add Zeros
 function addZero(n) {
@@ -27,6 +28,9 @@ function randInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 const backgrounds = []
 let currBackgroung = (new Date()).getHours();
@@ -71,7 +75,7 @@ function setBackgrount() {
         disableTrantition = true;
         setTimeout(function () {
             disableTrantition = false;
-        }, 1000);
+        }, 1300);
     }
 }
 
@@ -253,6 +257,7 @@ city.addEventListener('blur', getCity);
 quoteBody.addEventListener('click', getQuote);
 
 // Run
+
 showTime();
 setInterval(showTime, 1000);
 setGreetHourly();

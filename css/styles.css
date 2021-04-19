@@ -15,7 +15,8 @@ body {
     background-size: cover;
     color: #fff;
     text-shadow: 2px 2px 3px #000;
-    transition: background-image 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    transition-delay: 0.2s;
 }
 
 .background-buttons {
@@ -46,33 +47,33 @@ body {
 
 .time {
     font-size: 8rem;
+    transition: 0.5s all;
 }
 
 .date {
     font-size: 2rem;
+    transition: 0.5s all;
 }
 
 h1 {
     margin: 3rem;
+    font-size: 2rem;
+    transition: 0.5s all;
+}
+
+h2 {
+    margin: 0.3rem;
+    font-size: 1.5rem;
+    opacity: 0.8;
+    transition: 0.5s all;
 }
 
 .name {
     cursor: pointer;
 }
 
-h2 {
-    margin-bottom: 0.5rem;
-    opacity: 0.8;
-}
-
 .focus {
     cursor: pointer;
-}
-
-@media (max-width: 700px) {
-    .time {
-        font-size: 6rem;
-    }
 }
 
 .quote-wrapper {
@@ -81,11 +82,11 @@ h2 {
     width: 800px;
     padding: 30px;
     font-size: 20px;
+    transition: 0.5s all;
 }
 
 .quote-body {
     display: flex;
-    transition: 0.5s all;
 }
 
 .quote {
@@ -110,12 +111,12 @@ h2 {
     position: absolute;
     top: 20px;
     right: 30px;
-    font-size: 20px;
+    font-size: 1.5rem;
 }
 
 .weather-main {
     display: flex;
-    font-size: 25px;
+    font-size: 1.2rem;
 }
 
 .weather-add {
@@ -130,4 +131,55 @@ h2 {
     cursor: pointer;
     font-size: 18px;
     opacity: 0.8;
+}
+
+@media (max-width: 800px) {
+    .time {
+        font-size: 6rem;
+    }
+
+    .date {
+        font-size: 1.5rem;
+    }
+
+    .quote-wrapper {
+        width: 480px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+        opacity: 0.8;
+    }
+
+    .quote-wrapper {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .time {
+        font-size: 4.8rem;
+    }
+
+    .date {
+        font-size: 1.2rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+        opacity: 0.8;
+    }
+
+    .quote-wrapper {
+        width: 320px;
+        font-size: 1rem;
+    }
 }
